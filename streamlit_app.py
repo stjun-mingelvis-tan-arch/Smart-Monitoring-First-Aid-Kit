@@ -99,9 +99,20 @@ st.markdown('<div class="fast-action-label">FAST ACTIONS</div>', unsafe_allow_ht
 fa1, fa2, fa_spacer = st.columns([1, 1, 4])
 with fa1:
     # Opens pages/1_Access_People.py in a NEW browser tab.
-    # Streamlit auto-routes "1_Access_People.py" -> "/Access_People".
-    st.link_button("👥 Access People", "Access_People", use_container_width=True,
-                    help="Opens face-recognition / access-control view in a new tab")
+    # Using raw HTML with target="_blank" instead of st.link_button,
+    # since st.link_button was opening in the same tab.
+    st.markdown(
+        """
+        <a href="/Access_People" target="_blank" rel="noopener noreferrer"
+           style="display:inline-block;background:#1a56db;color:#fff;padding:6px 14px;
+                  border-radius:7px;font-family:'DM Mono',monospace;font-size:12px;
+                  text-decoration:none;text-align:center;width:100%;box-sizing:border-box">
+          👥 Access People
+        </a>
+        """,
+        unsafe_allow_html=True
+    )
+  
 with fa2:
     st.button("📦 Stock Tracking", disabled=True, use_container_width=True,
                help="Coming soon — let me know what this should track and I'll wire it up")
